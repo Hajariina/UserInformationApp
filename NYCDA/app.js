@@ -19,7 +19,7 @@ app.get('/', (request, response) => {
 			throw error;
 		}
 		console.log('readfile is called');
-		const userInfo = JSON.parse(data);
+			const userInfo = JSON.parse(data);
 		response.render('index', {people: userInfo});	
 	});
 });
@@ -29,7 +29,7 @@ app.get('/search', (request, response) => {
 		console.log('About to render a pug page');
 		if (error){
 			throw error;
-		}
+			}
 		console.log('readfile is called');
 		const userInfo = JSON.parse(data);
 		response.render('search', {people: userInfo});	
@@ -39,7 +39,7 @@ app.get('/search', (request, response) => {
 // Hier zie je de add_users.pug met 3 forms.
 app.get('/add_users', (request, response) => {
 	fs.readFile('./users.json', 'utf8', (error, data) =>{
-		console.log('About to render a pug page');
+			console.log('About to render a pug page');
 		if (error){
 			throw error;
 		}
@@ -49,7 +49,7 @@ app.get('/add_users', (request, response) => {
 	});
 });
 
-// Hier zie je de result.pug met het resultaat van je zoekopdracht.
+	// Hier zie je de result.pug met het resultaat van je zoekopdracht.
 app.post('/result', function(req, res) {
 	console.log('hier doe je een console log')
 		fs.readFile('./users.json', 'utf8', (error, data) =>{
@@ -59,7 +59,7 @@ app.post('/result', function(req, res) {
 		}
 		console.log('werkt de post request?');
 		console.log(req.body.query)
-		const userInfo = JSON.parse(data);
+			const userInfo = JSON.parse(data);
 
 		let searchResult = "nothing"
 		for (i=0; i< userInfo.length; i++){
@@ -105,7 +105,8 @@ app.post('/add-users', (request, response) => {
 			fs.writeFile(__dirname + '/users.json', json, 'utf8', (mistake) => { //write file with parsedData (with added user)
 				if (mistake) throw mistake;
 			})
-
+                        // response van Thomas. Even kijken of het werkt
+			response.redirect('/');
 			//changed render into redirect, so we only render all-users in app.get(all-users), so we don't keep on adding the same
 			// user when we reload after adding
 		// 	response.redirect('/all-users');
